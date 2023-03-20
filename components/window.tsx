@@ -8,19 +8,20 @@ const style = {
   background: "#f0f0f0"
 };
 
-export function Window({ onMouseDown, zIndex, children }:{onMouseDown:any, zIndex:Number, children:React.ReactNode}) {
+export function Window({ windowOnTop, zIndex, children, closeWindow }: any) {
   return (
     <Rnd
-      style={{ ...style, zIndex: `${zIndex}` }}
+      style={{ ...style, zIndex: zIndex * 10 }}
       default={{
         x: 0,
         y: 0,
         width: 320,
         height: 200
       }}
-      onMouseDown={() => onMouseDown(zIndex)}
+      onMouseDown={() => windowOnTop(zIndex)}
     >
       {children}
+      <button onClick={() => closeWindow(zIndex)}>Close window</button>
     </Rnd>
   );
 }
