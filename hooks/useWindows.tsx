@@ -47,7 +47,6 @@ export function useWindows() {
   };
 
   const closeWindow = (index:number) => {
-    console.log("closeWindow" + index);
     setWindows(
       windows.filter((item) => {
         return item.zIndex === index;
