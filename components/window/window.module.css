@@ -1,7 +1,4 @@
 .window {
-  display: grid;
-  grid-template-columns: 50px auto 50px;
-  grid-template-rows: 50px auto;
   background-color: rgba(228, 231, 237, 0.5);
   border-radius: 1rem;
   overflow: hidden;
@@ -66,8 +63,8 @@
 /* Close btn */
 .closeBtn:before,
 .closeBtn:after {
-  width: 4px;
-  height: 70%;
+  width: 0.05rem;
+  height: 60%;
   background: #460100;
 }
 
@@ -81,20 +78,21 @@
 
 /* min btn */
 .minBtn:before {
-  width: 70%;
-  height: 5px;
+  width: 50%;
+  height: 0.05rem;
   background: #460100;
 }
 
 /* max btn */
 .maxBtn:before {
-  width: 50%;
-  height: 50%;
+  width: 0.3rem;
+  height: 0.3rem;
   background: #024d0f;
+  border-radius: 0px;
 }
 
 .maxBtn:after {
-  width: 9px;
+  width: 0.15rem;
   height: 70%;
   transform: translate(-50%, -50%) rotate(-45deg);
   background: #00cd4e;

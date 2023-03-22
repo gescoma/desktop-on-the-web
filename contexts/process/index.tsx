@@ -44,9 +44,18 @@ export const ProcessProvider = ({ children }:{ children:React.ReactNode }) => {
 export const useProcess = () => {
   const [process, setProcess] = useState<Program[]>([])
 
-  const rawSetProcess = (newProcess:any) => {
+  useEffect(() => {
+    const processOnServer = getInicialProcess()
+    setProcess(processOnServer)
+  }, [])
+
+  const saveChangesLocalStorage = (newProcess:any) => {
     const newProcessString = JSON.stringify(newProcess)
     localStorage.setItem('process', newProcessString)
+  }
+
+  const rawSetProcess = (newProcess:any) => {
+    saveChangesLocalStorage(newProcess)
     setProcess(newProcess)
   }
 
@@ -101,11 +110,7 @@ export const useProcess = () => {
       };
     });
     rawSetProcess(newOrderProcess)
-  }
-
-  useEffect(() => {
-    rawSetProcess(process)
-  }, [process])
+  }  
 
   return {
     process,
