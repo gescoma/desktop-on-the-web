@@ -31,7 +31,6 @@ export function Window({
         height: program.window.height,
       }}
       onMouseDown={() => {
-        console.log(program.id)
         windowOnTop(program.id)
       }}
       onResizeStop={(e, d, r, delta, position) => {
@@ -52,6 +51,7 @@ export function Window({
         }
         updateWindow(program.id, window)
       }}
+      dragHandleClassName={styles.navbar}
       
     >
       <div className={styles.navbar}>
@@ -61,7 +61,7 @@ export function Window({
           <button className={[styles.btn, styles.maxBtn].join(' ')} onClick={() => {console.log("maximize")}}></button>
         </div>
         <div>{program.name}</div>
-        <div>{program.icon}</div>
+        <div></div>
       </div>
       <div>
         {children}

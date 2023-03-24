@@ -69,6 +69,27 @@ export const useProcess = () => {
     rawSetProcess(newProcess)
   }
 
+  const windowOnTop = (id:string) => {
+    const zIndex = process.find((program) => program.id === id)?.window.zIndex
+    if (zIndex === process.length || zIndex===undefined) return;
+    const newOrderProcess = process.map((program:Program) => {
+      if (program.active) program.active = false
+      if (program.window.zIndex < zIndex) return program;
+      if (program.window.zIndex === zIndex) {
+        program.window.zIndex = process.length;
+        return program;
+      }
+      return {
+        ...program,
+        window: {
+          ...program.window,
+          zIndex: program.window.zIndex - 1
+        }
+      };
+    });
+    rawSetProcess(newOrderProcess)
+  }
+
   const updateWindow = (id:string, window:{width:number, height:number, x:number, y:number}) => {
     const newProcess = process.map((program) => {
       if (program.id !== id) return program
@@ -92,31 +113,43 @@ export const useProcess = () => {
 
   // minimize process
 
-  const windowOnTop = (id:string) => {
-    const zIndex = process.find((program) => program.id === id)?.window.zIndex
-    if (zIndex === process.length || zIndex===undefined) return;
-    const newOrderProcess = process.map((program:Program) => {
-      if (program.window.zIndex < zIndex) return program;
-      if (program.window.zIndex === zIndex) {
-        program.window.zIndex = process.length;
-        return program;
+  const minimizeProcess = (id:string) => {
+    
+  }
+
+  const reOpen = (id:string) => {
+    const newProcess = process.map((program) => {
+      if (program.id !== id) return program
+      return {
+        ...program,
+        minimized: false
+      }
+    })
+    setProcess(newProcess)
+    windowOnTop(id)
+  }
+  
+  const resetActive = (id:string) => {
+    const newProcess = process.map((program) => {
+      if (program.id !== id && !program.active) return program
+      if (program.id !== id) return {
+        ...program,
+        active: false
       }
       return {
         ...program,
-        window: {
-          ...program.window,
-          zIndex: program.window.zIndex - 1
-        }
-      };
-    });
-    rawSetProcess(newOrderProcess)
-  }  
+        active: true
+      }
+    })
+    return newProcess
+  } 
 
   return {
     process,
     addProcess,
     removeProcess,
     windowOnTop,
-    updateWindow
+    updateWindow,
+    minimizeProcess
   }
 }

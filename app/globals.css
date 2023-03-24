@@ -82,10 +82,13 @@
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
+  max-height: 100vh;
+  overflow: hidden;
 }
 
 body {
+  background-image: url("/desktopBackground.jpg");
+  background-size: cover;
 }
 
 a {

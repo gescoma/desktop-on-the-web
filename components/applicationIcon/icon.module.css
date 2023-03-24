@@ -1,0 +1,18 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.icon {
+  width: 60px;
+  height: 60px;
+  background-color: #fff;
+  border-radius: 15px;
+  transition: 50ms all ease-in-out;
+}
+
+.app:hover .icon {
+  transform: scale(1.05);
+}

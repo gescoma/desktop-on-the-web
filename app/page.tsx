@@ -1,7 +1,9 @@
 'use client';
 
-import type { Program } from '@/contexts/process'
+import { Dock } from '@/components/dock';
+import { Program } from '@/contexts/process'
 import { Window } from '@/components/window';
+import styles from "./page.module.css"
 import { useProcess } from '@/contexts/process'
 
 export default function Home() {
@@ -27,12 +29,14 @@ export default function Home() {
 
   return (
     <>
-      {process.map((program:Program) => (
-          <Window program={program} key={program.id} {...functions}>
-            hello world
-          </Window>
-      ))}
-      <button onClick={() => teste()}>Add programm to process</button>
+      <div className={styles.desktop}>
+        {process.map((program:Program) => (
+            <Window program={program} key={program.id} {...functions}>
+              hello world
+            </Window>
+        ))}
+      </div>
+      <Dock></Dock>
     </>
   )
 }
